@@ -73,14 +73,5 @@ var init = function(){
   });
 }
 
-
-
-
-
-
-
-
-
-
 //Thanks to Tristan for his help this morning before class.
 //Refactoring Tristan and Kate's code with Brook helped me better understand where I was going wrong.
