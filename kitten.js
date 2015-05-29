@@ -1,11 +1,11 @@
-function Kitten(kittenNum, imgSrc, win, loss){
+function Kitten(kittenNum, imgSrc){
   this.kittenNum = kittenNum;
   this.imgSrc = imgSrc;
-  this.win = win;
-  this.loss = loss;
+  this.win = 0;
+  this.loss = 0;
 }
 
-var numOne, numTwo, win, loss, kPics = [];
+var kPics = [];
 
 function altNum(numOne, numTwo){
   var newNUm;
@@ -15,44 +15,72 @@ function altNum(numOne, numTwo){
   return newNum;
 }
 
-for (var i = 1; i <= 14; i++) {
-  kPics.push(new Kitten([i], "kitten_pics/kitten_" + [i] + ".jpg", 0, 0));
+
+$.ajax({
+  url: "https://api.imgur.com/3/album/Mk6Br.json",
+  headers: {
+    "Authorization": "Client-ID dc49bb5cee7f345"
+  }
+})
+.done(function(res) {
+  var catImages = res.data.images;
+  //Mk6Br.json = res.data;
+  for (var i = 0; i < catImages.length; i++) {
+    kPics.push(new Kitten(i, catImages[i].link));
+  }
+  init();
+});
+
+var tracker = function(win, loss) {
+  for(j = 0; j < kPics.length; j++) {
+    if(win === kPics[j].win){
+      kPics[j].win ++;
+    }
+    else {
+      kPics[i].loss ++;
+    }
+  }
 }
 
-numOne = Math.floor(Math.random() * kPics.length);
-numTwo = altNum(numOne, null);
+var init = function(){
+  var numOne = Math.floor(Math.random() * kPics.length);
+  var numTwo = altNum(numOne, numTwo);
 
-$(function(){
   $("#pic_1").attr("src", kPics[numOne].imgSrc);
   $("#pic_2").attr("src", kPics[numTwo].imgSrc);
-  win = kPics[numOne].win;
+  $("#wOne").text("Win: " + kPics[numOne].win);
+  $("#lOne").text("Loss: " + kPics[numOne].loss);
+  $("#wTwo").text("Win: " + kPics[numTwo].win);
+  $("#lTwo").text("Loss: " + kPics[numTwo].loss);
 
-  $("#pic_1").click(function(){
+
+  $("#pic_1").on("click", function(){
     kPics[numOne].win += 1;
     kPics[numTwo].loss += 1;
-    //console.log(kPics[numOne].win);
-    //console.log(kPics[numOne].loss);
-    //console.log(kPics[numTwo].win);
-    //console.log(kPics[numTwo].loss);
     numTwo = altNum(numOne, numTwo);
     $("#pic_2").attr("src", kPics[numTwo].imgSrc);
+    $("#wTwo").text("Win: " + kPics[numTwo].win);
+    $("#lTwo").text("Loss: " + kPics[numTwo].loss);
   });
 
-  $("#pic_2").click(function(){
+  $("#pic_2").on("click", function(){
     kPics[numTwo].loss += 1;
     kPics[numOne].win += 1;
     numOne = altNum(numOne, numTwo);
     $("#pic_1").attr("src", kPics[numOne].imgSrc);
+    $("#wOne").text("Win: " + kPics[numOne].win);
+    $("#lOne").text("Loss: " + kPics[numOne].loss);
   });
-});
+}
 
-var tracker = function(win, loss) {
-  for(l = 0; l < kPics.length; l++) {
-    if(win === kPics[l].win){
-      kPics[l].votes ++;
-    }
-  }
-};
+
+
+
+
+
+
+
+
 
 //Thanks to Tristan for his help this morning before class.
 //Refactoring Tristan and Kate's code with Brook helped me better understand where I was going wrong.

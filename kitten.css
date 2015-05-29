@@ -208,14 +208,15 @@ body {
   background-color: #ffffff;
   border: solid 3px blue;
   font-family: Fredoka One;
-  font-size: 24px;
+  font-size: 48px;
   color: red;
+  text-align: center;
   padding: 10px;
   margin-bottom: 10px;
   margin-top: 10px;
 }
 
-#vote_counter {
+#wl_one, #wl_two {
   background-color: #ffffff;
   color: red;
   border: solid 3px blue;
@@ -224,7 +225,12 @@ body {
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
-  text-align: center;
+  text-align: left;
+}
+
+#wl_one {
+  border: solid 3px red;
+  color: blue;
 }
 
 #end_footer {
