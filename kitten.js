@@ -15,7 +15,6 @@ function altNum(numOne, numTwo){
   return newNum;
 }
 
-
 $.ajax({
   url: "https://api.imgur.com/3/album/Mk6Br.json",
   headers: {
@@ -31,17 +30,6 @@ $.ajax({
   init();
 });
 
-var tracker = function(win, loss) {
-  for(j = 0; j < kPics.length; j++) {
-    if(win === kPics[j].win){
-      kPics[j].win ++;
-    }
-    else {
-      kPics[i].loss ++;
-    }
-  }
-}
-
 var init = function(){
   var numOne = Math.floor(Math.random() * kPics.length);
   var numTwo = altNum(numOne, numTwo);
@@ -52,7 +40,6 @@ var init = function(){
   $("#lOne").text("Loss: " + kPics[numOne].loss);
   $("#wTwo").text("Win: " + kPics[numTwo].win);
   $("#lTwo").text("Loss: " + kPics[numTwo].loss);
-
 
   $("#pic_1").on("click", function(){
     kPics[numOne].win += 1;
@@ -73,14 +60,6 @@ var init = function(){
   });
 }
 
-
-
-
-
-
-
-
-
-
 //Thanks to Tristan for his help this morning before class.
 //Refactoring Tristan and Kate's code with Brook helped me better understand where I was going wrong.
+//Also a big thanks to Paul for his help today.
