@@ -1,0 +1,22 @@
+{
+  "name": "vote_tracker",
+  "version": "1.0.0",
+  "description": "This is a vote tracking app that allows the user to pick which kitten picture they believe to be the cutest, in the USA.",
+  "main": "kitten.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natepecota/vote_tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/natepecota/vote_tracker/issues"
+  },
+  "homepage": "https://github.com/natepecota/vote_tracker#readme",
+  "dependencies": {
+    "express": "^4.12.4"
+  }
+}
